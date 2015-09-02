@@ -1,6 +1,6 @@
 {
     "name": "icepay/api",
-    "description": "The ICEPAY API",
+    "description": "ICEPAY API client for PHP",
     "version": "0.0.1",
     "type": "library",
     "keywords": [
