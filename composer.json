@@ -1,8 +1,26 @@
 {
     "name": "icepay/api",
     "description": "The ICEPAY API",
-    "license": "BSD-2-Clause",
+    "version": "0.0.1",
     "type": "library",
+    "keywords": [
+        "icepay", "payment", "service", "ideal", "creditcard", "mistercash", "bancontact", "sofort", "sofortbanking", "paypal", "paysafecard", "banktransfer", "refund", "api", "payments", "gateway", "yourgift", "phone", "afterpay"
+    ],
+    "homepage": "https://icepay.com",
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Ricardo Jacobs",
+            "email": "ricardozegt@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "info@icepay.com",
+        "issues": "https://github.com/icepay/API/issues",
+        "source": "https://github.com/icepay/API/",
+        "docs": "https://github.com/icepay/API/tree/master/doc"
+    },
     "require": {
         "php": ">=5.3.0"
     },
@@ -10,15 +28,5 @@
         "psr-4": {
             "": "src/"
         }
-    },
-    "support": {
-        "email": "info@icepay.com",
-        "issues": "https://github.com/icepay/API/issues",
-        "source": "https://github.com/icepay/API/"
-    },
-    "authors": [{
-        "name": "Ricardo Jacobs",
-        "email": "ricardozegt@gmail.com",
-        "role": "Developer"
-    }]
+    }
 }
