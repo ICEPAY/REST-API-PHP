@@ -1,12 +1,12 @@
 {
     "name": "icepay/api",
-    "description": "ICEPAY API client for PHP",
+    "description": "ICEPAY REST API for PHP",
     "version": "0.0.1",
     "type": "library",
     "keywords": [
         "icepay", "payment", "service", "ideal", "creditcard", "mistercash", "bancontact", "sofort", "sofortbanking", "paypal", "paysafecard", "banktransfer", "refund", "api", "payments", "gateway", "yourgift", "phone", "afterpay"
     ],
-    "homepage": "https://icepay.com",
+    "homepage": "https://www.icepay.com",
     "license": "BSD-2-Clause",
     "authors": [
         {
@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "Icepay\\": "src/"
         }
     }
 }
