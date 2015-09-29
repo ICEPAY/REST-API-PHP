@@ -6,7 +6,7 @@ The parameters mentioned in this chapter form the JSON-formatted body of each re
 
 **Important notes:**
 
-  - The field ‘issuer’ must always contain a value allowed under the chosen payment method. For example when paying with iDEAL, the issuer must be a Dutch consumer bank supporting iDEAL. When paying with credit cards, the issuer must be a supported credit card scheme for which you have a subscription.
+  - The field `issuer` must always contain a value allowed under the chosen payment method. For example when paying with iDEAL, the issuer must be a Dutch consumer bank supporting iDEAL. When paying with credit cards, the issuer must be a supported credit card scheme for which you have a subscription.
   - Most payment methods are limited to certain countries. Some payment methods (iDEAL, giropay, Carte Bleue etc.) are limited to one country, while others (Wire Transfer, SOFORT Banking) are limited to the SEPA area or to a certain part of the SEPA area. The Supported Parameters Sheet (see link above) specifies for the allowed countries for each payment method.
 
 ### Payment Service
@@ -61,14 +61,14 @@ Member        | Description                                                     
 ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------
 PaymentMethod | Description of the payment method which will be used in the payment at the moment vaulting is supported for `credit card` and `iDEAL`.         | String
 Amount        | The amount of the transaction.                                                                                                                 | Integer
-Language      | The ISO code of the language e.g Dutch is ‘NL’                                                                                                  | String
-Currency      | The ISO code of the currency e.g. Euro is ‘EUR’                                                                                                 | String
-Country       | The ISO code of the country e.g. Netherlands is ‘NL’                                                                                            | String
-Issuer        | The issuer connected to the payment method e.g. For credit card can be ‘VISA’ or ‘MASTERCARD’                                                    | String
+Language      | The ISO code of the language e.g Dutch is `NL`                                                                                                  | String
+Currency      | The ISO code of the currency e.g. Euro is `EUR`                                                                                                 | String
+Country       | The ISO code of the country e.g. Netherlands is `NL`                                                                                            | String
+Issuer        | The issuer connected to the payment method e.g. For credit card can be `VISA` or `MASTERCARD`                                                    | String
 ConsumerID    | The ID which is wished to link to the consumer credit card or bank account to perform automatic checkouts. It can be alphanumeric.             | String
 Timestamp     | This is the current UTC time that must have the following format: yyyy-mm-ddThh:mm:ssZ                                                         | String
 OrderID       | It is the Unique OrderID of the transaction.                                                                                                   | String
-Description   | It is the description which appears along the payment in the ICEPAY’s environment.                                                              | String
+Description   | It is the description which appears along the payment in the ICEPAY`s environment.                                                              | String
 EndUserIP     | Is the ip address of the customer                                                                                                              | String
 URLCompleted  | This is the page to which the end-user will be redirected to after a successful transaction.                                                   | String
 URLError      | Is the url where the user is redirected after erroneous payment.                                                                               | String
@@ -86,9 +86,9 @@ Member        | Description                                                     
 ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------
 PaymentMethod | Can have two values: `ddebit` this is required to perform an automatic checkout prior to storing an iDEAL account number. `creditcard` this is required to perform an automatic checkout prior to storing a credit card number. The keywords are not case sensitive. | String
 Amount        | Is the amount in cents which is desired to bill.                                                                                                                                                                                                                     | Integer
-Language      | Is the language code of the billing e.g. for the Netherlands ‘NL’                                                                                                                                                                                                     | String
-Currency      | Is the currency code e.g. for euro ‘EUR’                                                                                                                                                                                                                              | String
-Country       | Is the country code e.g. for the Netherlands ‘NL’                                                                                                                                                                                                                     | String
+Language      | Is the language code of the billing e.g. for the Netherlands `NL`                                                                                                                                                                                                     | String
+Currency      | Is the currency code e.g. for euro `EUR`                                                                                                                                                                                                                              | String
+Country       | Is the country code e.g. for the Netherlands `NL`                                                                                                                                                                                                                     | String
 Issuer        | This depends on the payment method insert before: For `creditcard` it must be `CCAUTOCHECKOUT`. For `ddebit` it must be `IDEALINCASSO`                                                                                                                               | String
 ConsumerID    | This is the ConsumerID, which was vaulted previously using the VaultCheckout method.                                                                                                                                                                                 | String
 Timestamp     | This is the current UTC time that must have the following format: yyyy-mm-ddThh:mm:ssZ                                                                                                                                                                               | String

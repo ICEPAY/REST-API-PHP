@@ -125,7 +125,7 @@ The response to the above message is the following:
     "TestMode": false,
     "URLCompleted": "https://mywebshop.com/Payment/Success",
     "URLError": "https://mywebshop.com/Payment/Failure",
-    "MerchantID": 12345
+    "MerchantID": 12345,
     "Timestamp": "2015-01-01T00:00:00"
 }
 ```
