@@ -15,13 +15,23 @@ By far the easiest way to install the ICEPAY API client is to require it with [C
 
 	$ composer require icepay/api
 
-	    {
-	        "require": {
-	            "icepay/api": "0.*"
-	        }
-	    }
-
 You may also git checkout or [download the latest release](https://github.com/icepay/API/releases), and include the ICEPAY API client manually.
+
+### Documentation
+
+The documentation and its examples are stored in the `/doc/` [folder](https://github.com/icepay/API/tree/master/doc) in this repository.
+
+### Contributing
+
+We'd love for you to contribute to our source code and to make our API even better than it is today! Here is how you can do that:
+
+* Fork it
+* Create your feature branch (`git checkout -b my-new-feature`)
+* Commit your changes (`git commit -am 'Add some feature'`)
+* Push to the branch (`git push origin my-new-feature`)
+* Create new Pull Request
+
+Our authors will review your pull request when the PR has been made.
 
 ### License
 
