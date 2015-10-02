@@ -7,6 +7,7 @@ Authors: See the [composer.json authors block](https://github.com/icepay/API/blo
 Features:
 
   - Initial public release for internal testing purposes.
+  - GitHub markdown style documentation about the rest api.
 
 Bugfixes:
 

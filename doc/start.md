@@ -37,7 +37,7 @@ The API will then return a JSON-formatted response body.
 
 ### URL
 
-The base URL for the API is: [https://connect.icepay.com/api/v1/](https://connect.icepay.com/api/v1/)
+The base URL for the API is: [https://connect.icepay.com/webservice/api/v1/](https://connect.icepay.com/webservice/api/v1/)
 
 The service and operation name follow on after the base URL. See [Available services and operations](#available-services-and-operations) for a list of available services, and Chapter 4 for a list of operations per service. A full API URL would have the following format: https://connect.icepay.com/api/v1/payment/checkout
 
