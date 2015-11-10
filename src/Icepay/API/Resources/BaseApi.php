@@ -37,17 +37,6 @@ class BaseApi
     }
 
     /**
-     * Generates a checksum to sign the message
-     *
-     * @param $string
-     * @return string
-     */
-    public function generateChecksum($string)
-    {
-        return hash('sha256', utf8_encode($string));
-    }
-
-    /**
      * Get the customers IP Address
      *
      * @return string

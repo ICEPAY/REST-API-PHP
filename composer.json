@@ -17,9 +17,9 @@
     ],
     "support": {
         "email": "info@icepay.com",
-        "issues": "https://github.com/icepay/API/issues",
-        "source": "https://github.com/icepay/API/",
-        "docs": "https://github.com/icepay/API/tree/master/doc"
+        "issues": "https://github.com/ICEPAYdev/API/issues",
+        "source": "https://github.com/ICEPAYdev/API/",
+        "docs": "https://github.com/ICEPAYdev/API/tree/master/doc"
     },
     "require": {
         "php": ">=5.3.0"

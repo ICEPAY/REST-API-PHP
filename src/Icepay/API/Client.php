@@ -95,6 +95,17 @@ class Client
 		$this->api_error_url = trim($url);
 	}
 
+    /**
+     * Generates a checksum to sign the message
+     *
+     * @param $string
+     * @return string
+     */
+    public function generateChecksum($string)
+    {
+        return hash('sha256', utf8_encode($string));
+    }
+
 	/**
 	 * API Constructor
 	 */
@@ -161,6 +172,8 @@ class Client
 		curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, TRUE);
 		curl_setopt($this->ch, CURLOPT_TIMEOUT, 15);
 		curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $method);
+		curl_setopt($this->ch, CURLOPT_VERBOSE, TRUE);
+		curl_setopt($this->ch, CURLOPT_HEADER, TRUE);
 
 		/**
 		 * Possible output: 5.6.9
@@ -234,6 +247,13 @@ class Client
 		}
 
 		/**
+		 * Separate headers and response body
+		 */
+		$header_size = curl_getinfo($this->ch, CURLINFO_HEADER_SIZE);
+		$response_header = substr($response, 0, $header_size);
+		$response_body = substr($response, $header_size);
+
+		/**
 		 * Close the connection
 		 */
 		if (!function_exists("curl_reset")) {
@@ -245,9 +265,27 @@ class Client
 		}
 
 		/**
+		 * Verify response checksum. If it does not match, throw an exception
+		 */
+		$parsed_headers = $this->parse_headers($response_header);
+		if (isset($parsed_headers[0]["Checksum"])) {
+			$checksumVerification = $this->generateChecksum(
+	            $this->api_endpoint .
+	            $api_method .
+	            $this->api_post .
+	            $this->api_key .
+	            $this->api_secret .
+	            $response_body
+	        );
+	        if ($checksumVerification != $parsed_headers[0]["Checksum"]) {
+	        	throw new \Exception("Response checksum invalid");
+	        }
+	    }
+
+		/**
 		 * Return the decoded json response
 		 */
-		return json_decode($response);
+		return json_decode($response_body);
 	}
 
 	/**
@@ -258,5 +296,32 @@ class Client
 		if (is_resource($this->ch)) {
 			curl_close($this->ch);
 		}
+	}
+
+	private function parse_headers($headertext)	{
+		$headers = array();
+
+		/**
+		 * Split headers by newline
+		 */
+	    $rawHeaders = explode("\r\n\r\n", $headertext);
+	    /**
+	     * Loop through headers, split on semicolon and push to array
+	     * Stop at last item: it's just the empty line to separate the headers from the body
+	     */
+	    for ($index = 0; $index < count($rawHeaders) -1; $index++) {
+
+	        foreach (explode("\r\n", $rawHeaders[$index]) as $i => $line) {
+	            if ($i === 0) {
+	                $headers[$index]['http_code'] = $line;
+	            }
+	            else {
+	                list ($key, $value) = explode(': ', $line);
+	                $headers[$index][$key] = $value;
+	            }
+	        }
+	    }
+
+	    return $headers;
 	}
 }

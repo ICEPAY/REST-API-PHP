@@ -30,7 +30,7 @@ class Refund extends BaseApi
         /**
          * Generate the checksum for the request
          */
-        $checksum = $this->generateChecksum(
+        $checksum = $this->client->generateChecksum(
             $this->client->api_endpoint .
             'refund/requestrefund' .
             $this->client->api_post .
@@ -63,7 +63,7 @@ class Refund extends BaseApi
         /**
          * Generate the checksum for the request
          */
-        $checksum = $this->generateChecksum(
+        $checksum = $this->client->generateChecksum(
             $this->client->api_endpoint .
             'refund/cancelrefund' .
             $this->client->api_post .
@@ -95,7 +95,7 @@ class Refund extends BaseApi
         /**
          * Generate the checksum for the request
          */
-        $checksum = $this->generateChecksum(
+        $checksum = $this->client->generateChecksum(
             $this->client->api_endpoint .
             'refund/getpaymentrefunds' .
             $this->client->api_post .

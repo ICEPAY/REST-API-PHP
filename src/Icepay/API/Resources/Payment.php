@@ -39,7 +39,7 @@ class Payment extends BaseApi
         /**
          * Generate the checksum for the request
          */
-        $checksum = $this->generateChecksum(
+        $checksum = $this->client->generateChecksum(
             $this->client->api_endpoint .
             'payment/checkout' .
             $this->client->api_post .
@@ -83,7 +83,7 @@ class Payment extends BaseApi
         /**
          * Generate the checksum for the request
          */
-        $checksum = $this->generateChecksum(
+        $checksum = $this->client->generateChecksum(
             $this->client->api_endpoint .
             'payment/vaultcheckout' .
             $this->client->api_post .
@@ -127,7 +127,7 @@ class Payment extends BaseApi
         /**
          * Generate the checksum for the request
          */
-        $checksum = $this->generateChecksum(
+        $checksum = $this->client->generateChecksum(
             $this->client->api_endpoint .
             'payment/automaticcheckout' .
             $this->client->api_post .
@@ -157,7 +157,7 @@ class Payment extends BaseApi
         /**
          * Generate the checksum for the request
          */
-        $checksum = $this->generateChecksum(
+        $checksum = $this->client->generateChecksum(
             $this->client->api_endpoint .
             'payment/getmypaymentmethods' .
             $this->client->api_post .
@@ -189,7 +189,7 @@ class Payment extends BaseApi
         /**
          * Generate the checksum for the request
          */
-        $checksum = $this->generateChecksum(
+        $checksum = $this->client->generateChecksum(
             $this->client->api_endpoint .
             'payment/getpayment' .
             $this->client->api_post .
