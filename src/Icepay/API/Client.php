@@ -103,7 +103,7 @@ class Client
      */
     public function generateChecksum($string)
     {
-        return hash('sha256', utf8_encode($string));
+        return hash('sha256', $string);
     }
 
 	/**
