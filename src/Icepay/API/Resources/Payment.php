@@ -37,6 +37,13 @@ class Payment extends BaseApi
         );
 
         /**
+         * MerchantClientID needed for Paysafecard payments
+         */
+        if ( array_key_exists('MerchantClientID', $data) ) {
+            $information['MerchantClientID'] = $data['MerchantClientID'];
+        }
+
+        /**
          * Generate the checksum for the request
          */
         $checksum = $this->client->generateChecksum(
