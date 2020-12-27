@@ -2,6 +2,14 @@
 
 Authors: See the [composer.json authors block](https://github.com/icepay/API/blob/master/composer.json) for all the authors and contributors of this project.
 
+
+### 0.0.3 (27-12-2020)
+
+Features:
+
+  - Add support for paysafecard MerchantClientID in Payment->checkOut
+
+
 ### 0.0.2 (18-04-2016)
 
 Bugfixes:
