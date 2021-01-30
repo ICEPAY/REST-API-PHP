@@ -141,7 +141,7 @@ class Client
      * @return mixed
      * @throws \Exception
      */
-    public function request($method, $api_method, $body = NULL, $checksum)
+    public function request($method, $api_method, $body, $checksum)
     {
         /**
          * Check if the Merchant ID is set
