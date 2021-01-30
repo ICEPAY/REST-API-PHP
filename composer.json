@@ -1,5 +1,5 @@
 {
-    "name": "icepay/api",
+    "name": "itshosted/icepay-api",
     "description": "ICEPAY REST API for PHP",
     "version": "0.0.3",
     "type": "library",
@@ -10,8 +10,8 @@
     "license": "BSD-2-Clause",
     "authors": [
         {
-            "name": "Ricardo Jacobs",
-            "email": "ricardozegt@gmail.com",
+            "name": "Jethro van Ginkel",
+            "email": "jethro@itshosted.nl",
             "role": "Developer"
         }
     ],
