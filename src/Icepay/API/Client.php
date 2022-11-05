@@ -1,14 +1,5 @@
 <?php namespace Icepay\API;
 
-/**
- * ICEPAY REST API for PHP
- *
- * @version     0.0.2
- * @authors     Ricardo Jacobs <ricardozegt@gmail.com>
- * @license     BSD-2-Clause, see LICENSE.md
- * @copyright   (c) 2015, ICEPAY B.V. All rights reserved.
- */
-
 use Icepay\API\Resources\Payment;
 use Icepay\API\Resources\Refund;
 
@@ -16,7 +7,7 @@ class Client
 {
 
     private static $instance;
-    
+
     /**
      * @var $ch
      */
