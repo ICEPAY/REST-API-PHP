@@ -6,43 +6,10 @@ class Payment extends BaseApi
      * @param $data
      * @return mixed
      */
-    public function checkOut($data)
+    public function checkout($data)
     {
-        /**
-         * Information for starting a payment
-         */
-        $information = array(
-            'Timestamp' => $this->getTimeStamp(),
-            'Amount' => $data['Amount'],
-            'Country' => $data['Country'],
-            'Currency' => $data['Currency'],
-            'Description' => $data['Description'],
-            'Issuer' => $data['Issuer'],
-            'Language' => $data['Language'],
-            'OrderID' => $data['OrderID'],
-            'PaymentMethod' => $data['Paymentmethod'],
-            'Reference' => $data['Reference'],
-            'URLCompleted' => $this->client->api_completed_url,
-            'URLError' => $this->client->api_error_url,
-            'EndUserIP' => $this->getClientIp()
-        );
-
-        /**
-         * Generate the checksum for the request
-         */
-        $checksum = $this->client->generateChecksum(
-            $this->client->api_endpoint .
-            'payment/checkout' .
-            $this->client->api_post .
-            $this->client->api_key .
-            $this->client->api_secret .
-            json_encode($information)
-        );
-
-        /**
-         * Make the call.
-         */
-        return $this->client->request($this->client->api_post, 'payment/checkout', $information, $checksum);
+        $body = $this->getNewPaymentBody($data);
+        return $this->request($this->client->api_post, 'payment/checkout', $body);
     }
 
     /**
@@ -51,42 +18,8 @@ class Payment extends BaseApi
      */
     public function vaultCheckout($data)
     {
-        /**
-         * Information for starting a recurring payment
-         */
-        $information = array(
-            'Timestamp' => $this->getTimeStamp(),
-            'Amount' => $data['Amount'],
-            'Country' => $data['Country'],
-            'Currency' => $data['Currency'],
-            'Description' => $data['Description'],
-            'Issuer' => $data['Issuer'],
-            'ConsumerID' => $data['ConsumerID'],
-            'Language' => $data['Language'],
-            'OrderID' => $data['OrderID'],
-            'PaymentMethod' => $data['Paymentmethod'],
-            'Reference' => $data['Reference'],
-            'URLCompleted' => $this->client->api_completed_url,
-            'URLError' => $this->client->api_error_url,
-            'EndUserIP' => $this->getClientIp()
-        );
-
-        /**
-         * Generate the checksum for the request
-         */
-        $checksum = $this->client->generateChecksum(
-            $this->client->api_endpoint .
-            'payment/vaultcheckout' .
-            $this->client->api_post .
-            $this->client->api_key .
-            $this->client->api_secret .
-            json_encode($information)
-        );
-
-        /**
-         * Make the call.
-         */
-        return $this->client->request($this->client->api_post, 'payment/vaultcheckout', $information, $checksum);
+        $body = $this->getNewPaymentBody($data);
+        return $this->request($this->client->api_post, 'payment/vaultcheckout', $body);
     }
 
     /**
@@ -95,42 +28,8 @@ class Payment extends BaseApi
      */
     public function autoCheckout($data)
     {
-        /**
-         * Information for continuing a recurring payment
-         */
-        $information = array(
-            'Timestamp' => $this->getTimeStamp(),
-            'Amount' => $data['Amount'],
-            'Country' => $data['Country'],
-            'Currency' => $data['Currency'],
-            'Description' => $data['Description'],
-            'Issuer' => $data['Issuer'],
-            'ConsumerID' => $data['ConsumerID'],
-            'Language' => $data['Language'],
-            'OrderID' => $data['OrderID'],
-            'PaymentMethod' => $data['Paymentmethod'],
-            'Reference' => $data['Reference'],
-            'URLCompleted' => $this->client->api_completed_url,
-            'URLError' => $this->client->api_error_url,
-            'EndUserIP' => $this->getClientIp()
-        );
-
-        /**
-         * Generate the checksum for the request
-         */
-        $checksum = $this->client->generateChecksum(
-            $this->client->api_endpoint .
-            'payment/automaticcheckout' .
-            $this->client->api_post .
-            $this->client->api_key .
-            $this->client->api_secret .
-            json_encode($information)
-        );
-
-        /**
-         * Make the call.
-         */
-        return $this->client->request($this->client->api_post, 'payment/automaticcheckout', $information, $checksum);
+        $body = $this->getNewPaymentBody($data);
+        return $this->request($this->client->api_post, 'payment/automaticcheckout', $body);
     }
 
     /**
@@ -138,29 +37,11 @@ class Payment extends BaseApi
      */
     public function getMyPaymentMethods()
     {
-        /**
-         * Information for getting active payment methods
-         */
-        $information = array(
+        $body = [
             'Timestamp' => $this->getTimeStamp()
-        );
+        ];
 
-        /**
-         * Generate the checksum for the request
-         */
-        $checksum = $this->client->generateChecksum(
-            $this->client->api_endpoint .
-            'payment/getmypaymentmethods' .
-            $this->client->api_post .
-            $this->client->api_key .
-            $this->client->api_secret .
-            json_encode($information)
-        );
-
-        /**
-         * Make the call.
-         */
-        return $this->client->request($this->client->api_post, 'payment/getmypaymentmethods', $information, $checksum);
+        return $this->request($this->client->api_post, 'payment/getmypaymentmethods', $body);
     }
 
     /**
@@ -169,29 +50,41 @@ class Payment extends BaseApi
      */
     public function getPayment($data)
     {
-        /**
-         * Information for getting active payment methods
-         */
-        $information = array(
+        $body = [
             'Timestamp' => $this->getTimeStamp(),
             'PaymentID' => $data['PaymentID']
-        );
+        ];
 
-        /**
-         * Generate the checksum for the request
-         */
-        $checksum = $this->client->generateChecksum(
-            $this->client->api_endpoint .
-            'payment/getpayment' .
-            $this->client->api_post .
-            $this->client->api_key .
-            $this->client->api_secret .
-            json_encode($information)
-        );
+        return $this->request($this->client->api_post, 'payment/getpayment', $body);
+    }
 
-        /**
-         * Make the call.
-         */
-        return $this->client->request($this->client->api_post, 'payment/getpayment', $information, $checksum);
+    /**
+     * @param $data
+     * @return array
+     */
+    protected function getNewPaymentBody($data): array
+    {
+        $data = (array)$data;
+        $result = [
+            'Timestamp' => $this->getTimeStamp(),
+            'Amount' => $data['Amount'],
+            'Country' => $data['Country'],
+            'Currency' => $data['Currency'],
+            'Description' => $data['Description'],
+            'Issuer' => $data['Issuer'],
+            'Language' => $data['Language'],
+            'OrderID' => $data['OrderID'],
+            'PaymentMethod' => $data['Paymentmethod'],
+            'Reference' => $data['Reference'],
+            'URLCompleted' => $this->client->api_completed_url,
+            'URLError' => $this->client->api_error_url,
+            'EndUserIP' => $this->getClientIp()
+        ];
+
+        if(isset($data['ConsumerID'])){
+            $result['ConsumerID'] = $data['ConsumerID'];
+        }
+
+        return  $result;
     }
 }

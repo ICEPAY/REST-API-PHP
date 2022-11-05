@@ -75,4 +75,26 @@ class BaseApi
         return $ipaddress;
     }
 
+
+    /**
+     * @param array $body
+     * @return string
+     */
+    protected function generateChecksum(string $api_method, array $body): string
+    {
+        return $this->client->generateChecksum(
+            $this->client->api_endpoint .
+            $api_method .
+            $this->client->api_post .
+            $this->client->api_key .
+            $this->client->api_secret .
+            json_encode($body)
+        );
+    }
+
+    protected function request($method, $api_method, $body = NULL, $checksum)
+    {
+        $checksum = $this->generateChecksum($api_method, $body);
+        return $this->client->request($this->client->api_post, $api_method, $body, $checksum);
+    }
 }
