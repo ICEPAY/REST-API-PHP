@@ -1,14 +1,5 @@
 <?php namespace Icepay\API;
 
-/**
- * ICEPAY REST API for PHP
- *
- * @version     0.0.2
- * @authors     Ricardo Jacobs <ricardozegt@gmail.com>
- * @license     BSD-2-Clause, see LICENSE.md
- * @copyright   (c) 2015, ICEPAY B.V. All rights reserved.
- */
-
 use Icepay\API\Resources\Payment;
 use Icepay\API\Resources\Refund;
 
@@ -16,7 +7,7 @@ class Client
 {
 
     private static $instance;
-    
+
     /**
      * @var $ch
      */
@@ -43,9 +34,9 @@ class Client
     public $api_error_url;
 
     /**
-     * @var $api_endpoint string
+     * @var $api_base string
      */
-    public $api_endpoint = 'https://connect.icepay.com/webservice/api/v1/';
+    public $api_base = 'https://connect.icepay.com/webservice/api/v1/';
 
     /**
      * @var $api_version string
@@ -116,7 +107,19 @@ class Client
      * @param $string
      * @return string
      */
-    public function generateChecksum($string)
+    public function generateChecksum(string $method, string $endpoint, array $body): string
+    {
+        return $this->generateChecksumHash(
+            $this->api_base .
+            $endpoint .
+            $method .
+            $this->api_key .
+            $this->api_secret .
+            json_encode($body)
+        );
+    }
+
+    public function generateChecksumHash($string)
     {
         return hash('sha256', $string);
     }
@@ -134,14 +137,13 @@ class Client
      * Request function to call our API Rest Payment Server
      *
      * @param $method
-     * @param $api_method
+     * @param $endpoint
      * @param $body
-     * @param $checksum
      *
      * @return mixed
      * @throws \Exception
      */
-    public function request($method, $api_method, $body = NULL, $checksum)
+    public function request($method, $endpoint, $body = null)
     {
         /**
          * Check if the Merchant ID is set
@@ -183,7 +185,7 @@ class Client
         /**
          * Set the curl options
          */
-        curl_setopt($this->ch, CURLOPT_URL, $this->api_endpoint . $api_method);
+        curl_setopt($this->ch, CURLOPT_URL, $this->api_base . $endpoint);
         curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($this->ch, CURLOPT_TIMEOUT, 15);
         curl_setopt($this->ch, CURLOPT_CUSTOMREQUEST, $method);
@@ -193,6 +195,8 @@ class Client
          * Possible output: 5.6.9
          */
         $php_version = phpversion();
+
+        $checksum = $this->generateChecksum($method, $endpoint, $body);
 
         /**
          * Prepare the curl headers
@@ -289,9 +293,9 @@ class Client
          */
         $parsed_headers = $this->parse_headers($response_header);
         if (isset($parsed_headers[0]["Checksum"])) {
-            $checksumVerification = $this->generateChecksum(
-                $this->api_endpoint .
-                $api_method .
+            $checksumVerification = $this->generateChecksumHash(
+                $this->api_base .
+                $endpoint .
                 $this->api_post .
                 $this->api_key .
                 $this->api_secret .
