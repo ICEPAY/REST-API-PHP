@@ -81,8 +81,10 @@ class Payment extends BaseApi
             'EndUserIP' => $this->getClientIp()
         ];
 
-        if(isset($data['ConsumerID'])){
-            $result['ConsumerID'] = $data['ConsumerID'];
+        foreach (['ConsumerID', 'CustomerID', 'MerchantClientID'] as $key) {
+            if (isset($data[$key])) {
+                $result[$key] = $data[$key];
+            }
         }
 
         return  $result;
