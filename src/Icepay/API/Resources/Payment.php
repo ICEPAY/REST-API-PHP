@@ -58,6 +58,29 @@ class Payment extends BaseApi
         return $this->request($this->client->api_post, 'payment/getpayment', $body);
     }
 
+    public function forwardPayment($data)
+    {
+        $body = [
+            'Timestamp' => $this->getTimeStamp(),
+        ];
+
+        foreach ([
+                     'PaymentID',
+                     'ForwardToIBAN',
+                     'ForwardToBIC',
+                     'ForwardToBeneficiary',
+                     'ForwardToMerchantID',
+                     'Amount',
+                     'Description'
+                 ] as $key) {
+            if (isset($data[$key])) {
+                $body[$key] = $data[$key];
+            }
+        }
+
+        return $this->request($this->client->api_post, 'payment/forward', $body);
+    }
+
     /**
      * @param $data
      * @return array
