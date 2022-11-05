@@ -2,6 +2,12 @@
 
 Authors: See the [composer.json authors block](https://github.com/icepay/API/blob/master/composer.json) for all the authors and contributors of this project.
 
+### 1.0.0 (05-11-2022)
+
+Bugfixes:
+  - Changed CustomerID to ConsumerID in the vault checkout.
+  - Refactored API classes.
+
 ### 0.0.2 (18-04-2016)
 
 Bugfixes:

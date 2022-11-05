@@ -41,7 +41,7 @@ class Client
     /**
      * @var $api_version string
      */
-    private $api_version = '0.0.2';
+    private $api_version = '1.0.0';
 
     public function getReleaseVersion()
     {
