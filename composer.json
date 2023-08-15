@@ -1,7 +1,6 @@
 {
     "name": "icepay/api",
     "description": "ICEPAY REST API for PHP",
-    "version": "1.0.0",
     "type": "library",
     "keywords": [
         "icepay", "payment", "service", "ideal", "creditcard", "mistercash", "bancontact", "sofort", "sofortbanking", "paypal", "paysafecard", "banktransfer", "refund", "api", "payments", "gateway", "yourgift", "phone", "afterpay"
