@@ -76,13 +76,19 @@ class Payment extends BaseApi
             'OrderID' => $data['OrderID'],
             'PaymentMethod' => $data['Paymentmethod'],
             'Reference' => $data['Reference'],
+            'EndUserIP' => $data['EndUserIP'] ?? $this->getClientIp(),
             'URLCompleted' => $this->client->api_completed_url,
             'URLError' => $this->client->api_error_url,
-            'EndUserIP' => $this->getClientIp()
         ];
 
         if(isset($data['ConsumerID'])){
             $result['ConsumerID'] = $data['ConsumerID'];
+        }
+
+        if(isset($data['URLPostback'])){
+            $result['URLPostback'] = is_array($data['URLPostback']) ? $data['URLPostback'] : [$data['URLPostback']];
+        }elseif(isset($data['PostbackURL'])){
+            $result['URLPostback'] = is_array($data['PostbackURL']) ? $data['PostbackURL'] : [$data['PostbackURL']];
         }
 
         return  $result;
